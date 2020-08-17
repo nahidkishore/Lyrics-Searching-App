@@ -1,5 +1,5 @@
 
-
+// artist song name search input and use search event handler
 document.getElementById('search').addEventListener('click',function(evt){
   const songName = document.getElementById('searchBox').value;
   document.getElementById('searchBox').value = '';
@@ -36,12 +36,15 @@ const searchResult = data=>{
       </div>`;
   }   
 }
+// get lyrics 
 const lyrics = (titleName,artistName)=>{ 
   const lyricsApiUrl = `https://api.lyrics.ovh/v1/${artistName}/${titleName}`
   fetch(lyricsApiUrl)
   .then(response => response.json())
   .then(data => showLyrics(data,titleName,artistName))
 }
+
+// display Lyrics result
 const showLyrics = (data,titleName,artistName)=>{
   if(data.error == 'No lyrics found'){
       document.getElementById('song-title').innerHTML = ` ${titleName} lyrics is not found`;
